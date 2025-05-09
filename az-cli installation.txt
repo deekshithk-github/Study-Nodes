@@ -1,0 +1,21 @@
+To install Azure CLI (az commands) on Ubuntu, follow these steps:
+Step-by-step Instructions
+Update the system:
+sudo apt update
+Install prerequisites:
+
+sudo apt install ca-certificates curl apt-transport-https lsb-release gnupg -y
+Add the Microsoft package signing key:
+
+curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/microsoft.gpg
+Add the Azure CLI software repository:
+
+AZ_REPO=$(lsb_release -cs)
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+
+Update package lists and install Azure CLI:
+sudo apt update
+sudo apt install azure-cli -y
+
+Verify installation:
+az version
